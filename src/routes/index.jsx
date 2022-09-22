@@ -5,7 +5,7 @@ import { Route, Routes as ReactRouterDomRoutes } from "react-router-dom";
 
 import Layout from "layout";
 import routesConfig from "./routes.config";
-import Loader from "components/common/loaders/Loader";
+import Loader from "components/common/loaders/PageLoader";
 
 const Common = (route) => (
   <Suspense fallback={<Loader />}>

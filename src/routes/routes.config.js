@@ -18,10 +18,6 @@ const Dashboard = lazy(() => import("modules/dashboard/pages"));
 const routesConfig = {
   common: [
     {
-      index: true,
-      component: Dashboard,
-    },
-    {
       path: "unauthorized",
       component: Unauthorized,
     },
@@ -32,6 +28,10 @@ const routesConfig = {
       path: "/",
       component: RequiredAuth,
       children: [
+        {
+          index: true,
+          component: Dashboard,
+        },
         {
           path: "admin",
           permissions: [roles.admin],
