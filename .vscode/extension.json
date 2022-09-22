@@ -1,0 +1,13 @@
+{
+  "recommendations": [
+   "formulahendry.auto-close-tag",
+   "steoates.autoimport",
+   "streetsidesoftware.code-spell-checker",
+   "naumovs.color-highlight",
+   "dsznajder.es7-react-js-snippets",
+   "dbaeumer.vscode-eslint",
+   "wix.vscode-import-cost",
+   "esbenp.prettier-vscode",
+   "wayou.vscode-todo-highlight"
+  ]
+}
