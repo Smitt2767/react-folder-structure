@@ -1,5 +1,6 @@
 import React, { Suspense } from "react";
 // import { roles } from "constants/permissions";
+import PropTypes from "prop-types";
 
 import { Route, Routes as ReactRouterDomRoutes } from "react-router-dom";
 
@@ -12,6 +13,10 @@ const Common = (route) => (
     <route.component />
   </Suspense>
 );
+
+Common.prototype = {
+  component: PropTypes.elementType.isRequired,
+};
 
 const Public = (route) => {
   // Logic for public routes
@@ -29,11 +34,15 @@ const Public = (route) => {
   );
 };
 
+Public.prototype = {
+  ...Common.prototype,
+};
+
 const Private = (route) => {
   // Logic for Private routes
 
-  const { permissions, component: Component } = route;
-  console.log(permissions);
+  const { component: Component } = route;
+
   //   const currentUserRole = user.role;
 
   //   if (!!permissions?.length && !permissions.includes(currentUserRole))
@@ -46,6 +55,10 @@ const Private = (route) => {
   );
 };
 
+Private.prototype = {
+  ...Common.prototype,
+};
+
 const createNestedRoutes = (routes, RouteType) => {
   return routes.map((route, i) => {
     if (!route.component) {
@@ -53,7 +66,11 @@ const createNestedRoutes = (routes, RouteType) => {
     }
     if (route.children) {
       return (
-        <Route path={route.path} key={i} element={<RouteType {...route} />}>
+        <Route
+          path={route.path}
+          key={i}
+          element={<RouteType component={route.component} />}
+        >
           {createNestedRoutes(route.children, RouteType)}
         </Route>
       );
@@ -63,7 +80,7 @@ const createNestedRoutes = (routes, RouteType) => {
           key={i}
           index={route.index}
           path={route.path}
-          element={<RouteType {...route} />}
+          element={<RouteType component={route.component} />}
         />
       );
     }

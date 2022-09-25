@@ -1,9 +1,9 @@
-import { combineReducers } from "redux";
+import { combineReducers } from "@reduxjs/toolkit";
 
-import dashboardReducer from "modules/dashboard/store/reducer";
+import dashboardReducer from "modules/dashboard/slice";
 
-const rootReducer = combineReducers({
+const reducer = combineReducers({
   dashboard: dashboardReducer,
 });
 
-export default rootReducer;
+export default reducer;
